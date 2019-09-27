@@ -6,9 +6,12 @@ const AreaList = props => {
 
     return (
         <>
-            <article className="areaList">
+            <article className="explorerList">
                 {
-                    props.areas.map(area => <Area key={area.id} area={area} />)
+                    props.areas.map(area =>
+                        <Area key={area.id}
+                            getAttractions={props.getAttractions}
+                            area={area} />)
                 }
             </article>
         </>

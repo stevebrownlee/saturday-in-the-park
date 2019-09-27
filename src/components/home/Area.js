@@ -5,7 +5,10 @@ const Area = props => {
     return (
         <>
             <section className="parkArea">
-                <button className="fakeLink parkArea__link" onClick={() => console.log(props.area.id)}>{props.area.name}</button>
+                <button className="fakeLink parkArea__link"
+                        onClick={() => props.getAttractions(props.area.id)}>
+                    {props.area.name}
+                </button>
             </section>
         </>
     )
