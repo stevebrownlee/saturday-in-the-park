@@ -42,7 +42,6 @@ const Register = props => {
                     <input ref={userName} type="text"
                         name="userName"
                         className="form-control"
-                        defaultValue="admin"
                         placeholder="Username"
                         required autoFocus />
                 </fieldset>
@@ -50,7 +49,6 @@ const Register = props => {
                     <label htmlFor="firstName"> First Name </label>
                     <input ref={firstName} type="text"
                         name="firstName"
-                        defaultValue="admin"
                         className="form-control"
                         placeholder="First name"
                         required autoFocus />
@@ -59,7 +57,6 @@ const Register = props => {
                     <label htmlFor="lastName"> Last Name </label>
                     <input ref={lastName} type="text"
                         name="lastName"
-                        defaultValue="admin"
                         className="form-control"
                         placeholder="Last name"
                         required />
@@ -68,7 +65,6 @@ const Register = props => {
                     <label htmlFor="inputEmail"> Email address </label>
                     <input ref={email} type="email"
                         name="email"
-                        defaultValue="admin@admin.com"
                         className="form-control"
                         placeholder="Email address"
                         required />
@@ -77,7 +73,6 @@ const Register = props => {
                     <label htmlFor="inputEmail"> Family members </label>
                     <input ref={familyMembers} type="number"
                         name="familyMembers"
-                        defaultValue="4"
                         className="form-control"
                         required />
                 </fieldset>
@@ -85,7 +80,6 @@ const Register = props => {
                     <label htmlFor="inputPassword"> Password </label>
                     <input ref={password} type="password"
                         name="password"
-                        defaultValue="Admin8*"
                         className="form-control"
                         placeholder="Password"
                         required />
@@ -94,7 +88,6 @@ const Register = props => {
                     <label htmlFor="verifyPassword"> Verify Password </label>
                     <input ref={verifyPassword} type="password"
                         name="verifyPassword"
-                        defaultValue="Admin8*"
                         className="form-control"
                         placeholder="Verify password"
                         required />

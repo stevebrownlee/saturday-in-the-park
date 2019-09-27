@@ -2,24 +2,38 @@ import React, { useEffect, useState } from "react"
 import AreaList from "./AreaList"
 import "./Explorer.css"
 import Attractions from "./Attractions"
+import useSimpleAuth from "../../hooks/ui/useSimpleAuth"
 
 const ParkExplorer = props => {
-    const [areas, setAreas] = useState([])
+    const [areas, setAreas] = useState(['1'])
     const [attractions, setAttractions] = useState([])
+    const { isAuthenticated } = useSimpleAuth()
 
     const getAttractions = (areaId) => {
-        fetch(`http://localhost:8000/attractions?area=${areaId}`)
-            .then(response => response.json())
-            .then(attractions => {
-                console.log(attractions)
+        if (isAuthenticated()) {
+            fetch(`http://localhost:8000/attractions?area=${areaId}`, {
+                "method": "GET",
+                "headers": {
+                    "Authorization": `Token ${localStorage.getItem("kennywood_token")}`
+                }
             })
+                .then(response => response.json())
+                .then(setAttractions)
+
+        }
     }
 
     useEffect(() => {
-        console.log("******  ParkExplorer ComponentDidMount  ******")
-        fetch('http://localhost:8000/parkareas')
-            .then(response => response.json())
-            .then(setAreas)
+        if (isAuthenticated()) {
+            fetch('http://localhost:8000/parkareas', {
+                "method": "GET",
+                "headers": {
+                    "Authorization": `Token ${localStorage.getItem("kennywood_token")}`
+                }
+            })
+                .then(response => response.json())
+                .then(setAreas)
+        }
     }, [])
 
     return (
