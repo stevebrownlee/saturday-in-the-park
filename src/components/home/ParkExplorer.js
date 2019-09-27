@@ -17,7 +17,6 @@ const ParkExplorer = props => {
             <main className="explorer">
                 <AreaList areas={areas} />
                 <AreaList areas={areas} />
-
             </main>
         </>
     )

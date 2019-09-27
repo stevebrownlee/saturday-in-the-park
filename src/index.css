@@ -14,6 +14,10 @@ code {
     width: 23em;
 }
 
+button:focus {
+    outline: 0 !important;
+}
+
 .fakeLink {
     background: none!important;
     border: none;
@@ -22,4 +26,8 @@ code {
     color: #007bff;
     text-decoration: none;
     cursor: pointer;
+}
+
+.fakeLink:hover {
+    text-decoration: underline;
 }

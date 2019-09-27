@@ -5,7 +5,7 @@ const Area = props => {
     return (
         <>
             <section className="parkArea">
-                <header className="parkArea__header">{props.area.name}</header>
+                <button className="fakeLink parkArea__link" onClick={() => console.log(props.area.id)}>{props.area.name}</button>
             </section>
         </>
     )
