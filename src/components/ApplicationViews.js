@@ -3,6 +3,7 @@ import React from "react"
 import { withRouter } from "react-router-dom"
 import Register from "./auth/Register"
 import Login from "./auth/Login"
+import ParkExplorer from "./home/ParkExplorer"
 
 
 const ApplicationViews = () => {
@@ -11,23 +12,19 @@ const ApplicationViews = () => {
 
             <Route
                 exact path="/" render={props => {
-                    return (
-                        <>
-                            <img className="swings" src={require('./home/swings.jpeg')} alt="My Dog" />
-                        </>
-                    )
+                    return <ParkExplorer {...props} />
                 }}
             />
 
             <Route
                 path="/register" render={props => {
-                    return <Register />
+                    return <Register {...props} />
                 }}
             />
 
             <Route
                 path="/login" render={props => {
-                    return <Login />
+                    return <Login {...props} />
                 }}
             />
 

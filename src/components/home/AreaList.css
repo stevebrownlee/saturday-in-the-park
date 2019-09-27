@@ -1,0 +1,6 @@
+.areaList {
+    border: 1px solid gray;
+    padding: 2em;
+    flex-basis: 45%;
+    box-shadow: 5px 10px 15px rgba(72, 62, 23, 0.4);
+}

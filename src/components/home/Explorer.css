@@ -1,0 +1,5 @@
+.explorer {
+    margin: 4em 2em;
+    display: flex;
+    justify-content: space-between;
+}
