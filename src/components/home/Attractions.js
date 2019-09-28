@@ -1,12 +1,16 @@
 import React from "react"
-import "./AreaList.css"
+import Attraction from "./Attraction"
+import "./Attractions.css"
 
 const Attractions = props => {
-
     return (
         <>
-            <article className="explorerList"></article>
-
+            <article className="explorerList">
+                {
+                    props.attractions.map(ride =>
+                        <Attraction key={ride.id} ride={ride} />)
+                }
+            </article>
         </>
     )
 }
