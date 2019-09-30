@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react"
 
 const Attraction = props => {
     let dialog = null
-    const starttime = useRef()
+    const starttime = useRef(null)
     const [modalIsOpen, setIsOpen] = useState(false)
 
     const toggleDialog = () => {
@@ -12,24 +12,26 @@ const Attraction = props => {
             dialog.removeAttribute("open")
         } else {
             dialog.setAttribute("open", true)
+            starttime.current.focus()
         }
     }
 
     const addToItinerary = () => {
-        fetch('http://localhost:8000/itinerary', {
+        fetch('http://localhost:8000/itineraries', {
             "method": "POST",
             "headers": {
                 "Accept": "application/json",
+                "Content-Type": "application/json",
                 "Authorization": `Token ${localStorage.getItem("kennywood_token")}`
             },
             "body": JSON.stringify({
-                "ride_id": props.ride.id,
+                "attraction_id": props.ride.id,
                 "starttime": starttime.current.value
             })
         })
             .then(response => response.json())
             .then(() => {
-                console.log("Added")
+                toggleDialog()
             })
     }
 
@@ -53,24 +55,28 @@ const Attraction = props => {
     return (
         <>
             <dialog id="dialog--time" className="dialog--time">
-                <label htmlFor="starttime">When do you want to ride?</label>
-                <input ref={starttime} type="time" name="starttime" autoFocus
-                     min="09:00" max="18:00" required />
+                <main className="dialog__main">
+                    <label htmlFor="starttime">
+                        <p>When do you want to visit this attraction?</p>
+                        <p>Use 0900 for 9 a.m. or 1530 for 3:30 p.m.</p>
+                    </label>
+                    <input ref={starttime} type="number" name="starttime" required />
 
-                <button onClick={addToItinerary}>Add to Itinerary</button>
+                    <button onClick={addToItinerary}>Add to Itinerary</button>
 
-                <button style={{
-                    position: "absolute",
-                    top: "0.25em",
-                    right: "0.25em"
-                }}
-                    id="closeBtn"
-                    onClick={toggleDialog}>X</button>
+                    <button style={{
+                        position: "absolute",
+                        top: "0.25em",
+                        right: "0.25em"
+                    }}
+                        id="closeBtn"
+                        onClick={toggleDialog}>X</button>
+                </main>
             </dialog>
 
             <section className="ride">
                 <button className="fakeLink ride__link"
-                    onClick={() => toggleDialog()}>
+                    onClick={toggleDialog}>
                     {props.ride.name}
                 </button>
             </section>

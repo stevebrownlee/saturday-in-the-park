@@ -1,3 +1,8 @@
 .dialog--time {
     padding: 4em 2em;
 }
+
+.dialog__main {
+    display: flex;
+    flex-direction: column;
+}
