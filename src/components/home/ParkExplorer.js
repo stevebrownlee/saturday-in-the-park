@@ -19,7 +19,9 @@ const ParkExplorer = props => {
                 }
             })
                 .then(response => response.json())
-                .then(setAttractions)
+                .then((allAttractions) => {
+                    setAttractions(allAttractions)
+                })
         }
     }
 
@@ -43,7 +45,7 @@ const ParkExplorer = props => {
         <>
             <main className="explorer">
                 <AreaList areas={areas} getAttractions={getAttractions} />
-                <Attractions attractions={attractions} />
+                <Attractions attractions={attractions} {...props} />
             </main>
         </>
     )

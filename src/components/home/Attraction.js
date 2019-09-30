@@ -16,10 +16,11 @@ const Attraction = props => {
     }
 
     const addToItinerary = () => {
-        fetch('http://localhost:8000/itinerary', {
+        fetch('http://localhost:8000/itineraryitems', {
             "method": "POST",
             "headers": {
                 "Accept": "application/json",
+                "Content-Type": "application/json",
                 "Authorization": `Token ${localStorage.getItem("kennywood_token")}`
             },
             "body": JSON.stringify({
@@ -30,6 +31,7 @@ const Attraction = props => {
             .then(response => response.json())
             .then(() => {
                 console.log("Added")
+                props.history.push("/myitinerary")
             })
     }
 
@@ -54,8 +56,7 @@ const Attraction = props => {
         <>
             <dialog id="dialog--time" className="dialog--time">
                 <label htmlFor="starttime">When do you want to ride?</label>
-                <input ref={starttime} type="time" name="starttime" autoFocus
-                     min="09:00" max="18:00" required />
+                <input ref={starttime} type="text" name="starttime" autoFocus required />
 
                 <button onClick={addToItinerary}>Add to Itinerary</button>
 
