@@ -13,7 +13,7 @@ const NavBar = props => {
                     <Link className="nav-link" to="/">Saturday in the Park</Link>
                 </li>
                 <li className="nav-item">
-                    <Link className="nav-link" to="/itinerary">My Itinerary</Link>
+                    <Link className="nav-link" to="/myitinerary">My Itinerary</Link>
                 </li>
                 {
                     isAuthenticated() ?
