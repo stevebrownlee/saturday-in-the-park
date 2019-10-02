@@ -9,7 +9,10 @@ export default ({toggleDialog, callback}) => {
             <label htmlFor="starttime">When do you want to ride?</label>
             <input ref={starttime} type="text" name="starttime" autoFocus required />
 
-            <button onClick={() => callback(starttime.current.value)}>Add to Itinerary</button>
+            <button onClick={() => {
+                callback(starttime.current.value)
+                starttime.current.value = ""
+            }}>Add to Itinerary</button>
 
             <button style={{
                 position: "absolute",

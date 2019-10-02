@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react"
 import ItineraryDialog from "./ItineraryDialog"
 import useModal from "../../hooks/ui/useModal"
+import "./MyItinerary.css"
 
 
 const MyItinerary = props => {
@@ -25,6 +26,16 @@ const MyItinerary = props => {
             .then((allTheItems) => {
                 setItineraryList(allTheItems)
             })
+    }
+
+    const deleteItem = item => {
+        fetch(`http://localhost:8000/itineraryitems/${item.id}`, {
+            "method": "DELETE",
+            "headers": {
+                "Authorization": `Token ${localStorage.getItem("kennywood_token")}`
+            }
+        })
+            .then(getItems)
     }
 
     // Create useEffect()
@@ -72,20 +83,22 @@ const MyItinerary = props => {
                 updateItineraryItem(starttime)
             }} />
             <h2>What I Want to Do on Saturday</h2>
-
-            <ul>
+                <div className="itineraryItems">
                 {
                     itineraryList.map((item) => {
-                        return <li>
+                        return <div>
                             {item.attraction.name} in {item.attraction.area.name} at {item.starttime}
+                            <button onClick={() => {
+                                deleteItem(item)
+                            }}>Delete Me</button>
                             <button onClick={() => {
                                 setCurrentItinerary(item)
                                 toggleDialog(true)
                             }}>Edit Me</button>
-                        </li>
+                        </div>
                     })
                 }
-            </ul>
+                </div>
         </>
     )
 }
